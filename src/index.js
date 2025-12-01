@@ -1,27 +1,26 @@
 // src/index.js
-// Cloudflare Worker 入口文件 - 处理路由和请求
+// Cloudflare Worker 入口文件 - 支持流式动画
 
-import { resume } from "./content.js";
-import { render, getAvailableThemes } from "./renderer.js";
+import { config } from "./config.js";
+import { streamResume } from "./streamHandler.js";
 
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    const path = url.pathname.toLowerCase();
     const params = url.searchParams;
 
     // 获取 User-Agent 检测是否为 curl
     const userAgent = request.headers.get("User-Agent") || "";
     const isCurl = userAgent.toLowerCase().includes("curl");
 
-    // 非 curl 访问处理
+    // 非 curl 访问 - 显示 HTML 页面
     if (!isCurl) {
       const htmlResponse = `
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>DJJ - 终端简历</title>
+  <title>${config.name} - ${config.title}</title>
   <style>
     body {
       background: #0d1117;
@@ -44,13 +43,16 @@ export default {
       margin: 0.5rem;
     }
     .slogan { color: #f85149; font-style: italic; margin-top: 1rem; }
+    .hint { color: #8b949e; font-size: 0.9rem; margin-top: 1rem; }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>DJJ - Department of Joke Justice</h1>
+    <h1>${config.name} - ${config.title}</h1>
+    <p class="slogan">${config.pages[2]?.content?.slogan || ""}</p>
     <p>请使用 curl 访问:</p>
-    <code>curl pdjjq.org</code>
+    <code>curl -N me.pdjjq.org</code>
+    <p class="hint">-N 参数开启流式动画效果</p>
   </div>
 </body>
 </html>`;
@@ -59,27 +61,28 @@ export default {
       });
     }
 
-    // 获取主题参数
-    const theme = params.get("theme") || "default";
+    // 流式动画模式
+    const { readable, writable } = new TransformStream();
+    const writer = writable.getWriter();
 
-    // 组装内容 - 简洁版只显示主要信息
-    const contentMarkdown = [
-      resume.header,
-      resume.about,
-      resume.contact,
-      resume.footer,
-    ].join("\n");
+    // 启动异步流式输出
+    ctx.waitUntil(
+      (async () => {
+        try {
+          await streamResume(writer);
+        } catch (e) {
+          console.error("Stream error:", e);
+          await writer.abort(e);
+        }
+      })()
+    );
 
-    // 渲染 ANSI
-    const output = render(contentMarkdown, { theme });
-
-    // 返回响应
-    return new Response(output, {
+    return new Response(readable, {
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
-        "Cache-Control": "no-cache",
-        "X-Powered-By": "Cloudflare Workers",
-        "X-Theme": theme,
+        "Transfer-Encoding": "chunked",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "X-Content-Type-Options": "nosniff",
       },
     });
   },
