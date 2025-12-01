@@ -53,10 +53,10 @@ export const config = {
 
   // ============ 动画速度配置 ============
   speed: {
-    typing: 12, // 打字速度 (ms)
-    typingPause: 60, // 标点停顿 (ms)
-    transition: 40, // 切换动画速度 (ms)
-    logoDisplay: 800, // Logo 显示时长 (ms)
+    typing: 20, // 打字速度 (ms)
+    typingPause: 100, // 标点停顿 (ms)
+    transition: 80, // 切换动画速度 (ms)
+    logoDisplay: 1500, // Logo 显示时长 (ms)
   },
 
   // ============ 颜色主题 ============
