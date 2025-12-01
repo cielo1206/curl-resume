@@ -44,7 +44,7 @@ export const config: Config = {
       type: "image",
       content: {
         src: "assets/nyoncat.gif",
-        width: 60,
+        width: 30,
         colored: true,
         animated: true,
       },
@@ -56,7 +56,7 @@ export const config: Config = {
       type: "image",
       content: {
         src: "assets/DJJ.png",
-        width: 60,
+        width: 30,
         colored: true,
         animated: false,
       },
