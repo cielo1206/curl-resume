@@ -8,14 +8,12 @@ curl -N me.pdjjq.org
 
 ## Demo
 
-![Demo](assets/demo.mp4)
-
-> 如果视频无法播放，请查看 [assets/demo.mp4](assets/demo.mp4)
+![Demo](assets/demo.gif)
 
 ## 特性
 
 - 流式动画效果（打字机、光波、故障切换等）
-- 多页面系统（启动页、Logo页、内容页）
+- 多页面系统（启动页、Logo 页、内容页）
 - 高度可配置（只需修改 `config.js`）
 - 支持自定义 ASCII Logo
 - 基于 Cloudflare Workers，全球边缘部署
@@ -56,9 +54,9 @@ npm run deploy
 
 ```javascript
 export const config = {
-  name: "DJJ",                           // 你的名字/代号
-  title: "Department of Joke Justice",   // 标题
-  subtitle: "说烂笑话必遭审判",            // 副标题
+  name: "DJJ", // 你的名字/代号
+  title: "Department of Joke Justice", // 标题
+  subtitle: "说烂笑话必遭审判", // 副标题
   // ...
 };
 ```
@@ -146,6 +144,7 @@ export const customLogo = `
 ```
 
 你可以使用在线工具生成 ASCII 艺术字：
+
 - [patorjk.com/software/taag](https://patorjk.com/software/taag/)
 - [ascii-art-generator.org](https://ascii-art-generator.org/)
 
@@ -185,7 +184,7 @@ npm run deploy
 `effects.js` 提供了多种可复用的动画效果：
 
 ```javascript
-import * as effects from './effects.js';
+import * as effects from "./effects.js";
 
 // 打字机效果
 await effects.typewriter(push, "Hello World", { speed: 20 });
