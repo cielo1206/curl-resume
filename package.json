@@ -1,0 +1,28 @@
+{
+  "name": "terminal-resume",
+  "version": "1.0.0",
+  "description": "A curl-accessible terminal resume powered by Cloudflare Workers",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "keywords": [
+    "resume",
+    "terminal",
+    "curl",
+    "cloudflare-workers",
+    "ascii-art"
+  ],
+  "author": "TokenRoll",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.91.0"
+  },
+  "dependencies": {
+    "marked": "^15.0.4",
+    "marked-terminal": "^7.2.1"
+  }
+}
